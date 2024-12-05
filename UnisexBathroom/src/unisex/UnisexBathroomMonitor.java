@@ -72,7 +72,7 @@ public class UnisexBathroomMonitor implements UnisexBathroom {
 	}
 
 	@Override
-	public void cleaner_exit(int id) {
+	public synchronized void cleaner_exit(int id) {
 		// TODO Auto-generated method stub
 		cntD--;
 		notifyAll();
