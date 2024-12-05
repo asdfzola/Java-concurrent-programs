@@ -26,7 +26,8 @@ public class UnisexBathroomMonitor implements UnisexBathroom {
 		}
 		cntM++;
 		System.out.println("man " + id + " entered");
-		notifyAll();
+		if(cntM == 1)
+			notifyAll();
 	}
 
 	@Override
@@ -51,26 +52,30 @@ public class UnisexBathroomMonitor implements UnisexBathroom {
 		}
 		cntW++;
 		System.out.println("woman " + id + " entered");
-		notifyAll();
-	}
-
-	@Override
-	public synchronized void w_exit(int id) {
-		// TODO Auto-generated method stub
-		cntW--;
-		System.out.println("woman " + id + " left");
-		notifyAll();
+		if(cntW ==1 )
+			notifyAll();
 	}
 
 	@Override
 	public synchronized void cleaner_enter(int id) {
 		// TODO Auto-generated method stub
-
+		while ((cntM + cntW) > 0 || cntD > 0) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		cntD++;
+		System.out.println("Cleaner " + id + " entered");
 	}
 
 	@Override
 	public void cleaner_exit(int id) {
 		// TODO Auto-generated method stub
+		cntD--;
+		notifyAll();
 
 	}
 
