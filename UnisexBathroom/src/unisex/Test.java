@@ -17,7 +17,7 @@ public class Test {
 		}
 		
 		Cleaner c = new Cleaner("Cleaner 1", bath, 1);
-		//c.start(); //current thread is not owner error
+		c.start(); //it is stuck on cleaner
 	}
 
 }
