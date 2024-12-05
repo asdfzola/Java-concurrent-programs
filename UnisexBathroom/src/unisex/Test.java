@@ -4,7 +4,8 @@ public class Test {
 	public static void main(String[] args) {
 		int N = 3;
 		//UnisexBathroom bath = new UnisexBathroomSem(N);
-		UnisexBathroom bath = new UnisexBathroomLock(N);
+		//UnisexBathroom bath = new UnisexBathroomLock(N);
+		UnisexBathroom bath = new UnisexBathroomMonitor(N);
 
 		for (int i = 0; i < 6; i++) {
 			Man m = new Man("M" + (i + 1), bath, i);
